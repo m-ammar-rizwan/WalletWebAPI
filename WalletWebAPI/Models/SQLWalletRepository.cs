@@ -52,7 +52,7 @@ namespace WalletWebAPI.Models
                     var queryResult = context.Wallet_Currency.Where(x => x.CurrencyId == wallet_Currency.CurrencyId && x.WalletId == wallet_Currency.WalletId).FirstOrDefault();
                     if (queryResult != null)
                     {
-                        queryResult.Amount = queryResult.Amount + wallet_Currency.Amount;
+                        queryResult.Amount = queryResult.Amount - wallet_Currency.Amount;
                         var wallet = context.Wallet_Currency.Attach(queryResult);
                         wallet.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                         context.SaveChanges();
